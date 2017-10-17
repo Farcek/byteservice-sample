@@ -1,0 +1,13 @@
+{
+    "name": "logger-api",
+    "version": "1.0.0",
+    "description": "byte soliution logger service",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.config.js",
+
+        "nodemon": "nodemon --config nodemon.json ../dist.service.api/server.js"
+    },
+    "author": "farcek",
+    "license": "ISC"
+}

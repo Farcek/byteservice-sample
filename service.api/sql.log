@@ -1,0 +1,8 @@
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:03:12.824Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:04:33.662Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:05:15.276Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:06:07.588Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:07:26.993Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T10:55:52.444Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T11:23:05.320Z"}
+{"level":"info","message":"Executing (default): SELECT 1+1 AS result","timestamp":"2017-10-17T11:24:47.951Z"}

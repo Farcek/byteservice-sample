@@ -1,0 +1,15 @@
+{
+    "restartable": "rs",
+    "verbose": true,
+    "execMap": {
+        "js": "node"
+    },
+    "watch": [
+        "../dist.console.backend/server.js"
+    ],
+
+    "env": {
+        "NODE_ENV": "development",
+        "NODE_CONFIG_DIR": "E:\\projects\\byte\\logger service\\config"
+    }
+}

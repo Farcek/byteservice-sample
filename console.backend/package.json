@@ -1,0 +1,13 @@
+{
+    "name": "logger-console-backend",
+    "version": "1.0.0",
+    "description": "byte soliution logger service console backend",
+    "main": "index.js",
+    "scripts": {
+        "build": "webpack --config webpack.config.js",
+
+        "nodemon": "nodemon --config nodemon.json ../dist.console.backend/server.js"
+    },
+    "author": "farcek",
+    "license": "ISC"
+}
