@@ -13,6 +13,7 @@ export interface IDB {
     dialect: string;
     pool: any;
     debug: boolean
+    loggerDefineForce: boolean
 }
 export const databaseConf:IDB = config.get('database');
 

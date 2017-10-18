@@ -1,19 +1,15 @@
 import * as Sequelize from 'sequelize';
 import { connection } from './connection';
-import * as IUser from './user';
+import * as logger from './logger';
+
 
 
 export interface IAttributes {
-    id: number | null;
+    id: number;
     name: string;
-    usertable: string;
-    /**
-     * ssh-keygen Pem result
-     */
-    pemkey: string;
 
     /**
-     * User token key
+     * token key
      */
     tokenkey: string
 
@@ -22,22 +18,9 @@ export interface IAttributes {
      */
     ovner: string;
 
-    /**
-     * Application Roles 
-     */
-    roles: string;
+    loggers: string[]
 
-    /**
-     * Application Resources
-     */
-    resources: string;
-
-    /**
-     * Application Masks
-     */
-    masks: string;
-
-    createAt: Date
+    created_at: Date
 }
 
 export interface IInstance extends IAttributes, Sequelize.Instance<IAttributes> {
@@ -53,9 +36,7 @@ export const App = (() => {
 
     var options: Sequelize.DefineOptions<IInstance> = {
         tableName: "app",
-        timestamps: false,
-        classMethods: {},
-        instanceMethods: {}
+        timestamps: false
     };
 
     return <IModel>connection.define<IInstance, IAttributes>('App', {
@@ -70,51 +51,39 @@ export const App = (() => {
             field: "name",
             allowNull: false
         },
-        usertable: {
+        tokenkey: {
             type: Sequelize.STRING,
-            field: "usertable",
             allowNull: false
         },
         ovner: {
             type: Sequelize.STRING,
             allowNull: false
         },
-        tokenkey: {
-            type: Sequelize.STRING
-        },
-        pemkey: {
-            type: Sequelize.TEXT
-        },
-        roles: {
-            type: Sequelize.TEXT
-        },
-        resources: {
-            type: Sequelize.TEXT
-        },
-        masks: {
-            type: Sequelize.TEXT
-        },
-        createAt: Sequelize.DATE
+        created_at: Sequelize.DATE,
+        loggers: Sequelize.ARRAY(Sequelize.STRING)
     }, options);
 })();
 
-export async function userModelByAppId(appid: number) {
 
+export async function loadLogger(app: IInstance, loggerName: string) {
 
-    var app = await App.findById(appid);
-    if (app) {
-        return await userModelByApp(app);
+    if (app && loggerName) {
+
+        if (app.loggers && Array.isArray(app.loggers)) {
+            var loogers = app.loggers;
+            if (loogers.indexOf(loggerName) === -1) {
+                loogers.push(loggerName);
+                app.loggers = loogers;
+                await app.save();
+            }
+        } else {
+            app.loggers = [loggerName];
+            await app.save();
+        }
+
+        let key = `A${app.id}-${loggerName}`;
+        let Model = await logger.LoadOrCreate(key);
+        if (Model) return Model;
     }
-
-    return null;
-}
-
-export async function userModelByApp(app: IInstance) {
-
-
-
-    if (app && app.usertable) {
-        return await IUser.Load(app.usertable);
-    }
-    return null;
+    throw 'cannot load logger model';
 }

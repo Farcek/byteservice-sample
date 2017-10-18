@@ -1,4 +1,4 @@
 @echo off
-title Userly API Webpack
+title API Service Webpack
 
 webpack --watch

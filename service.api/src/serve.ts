@@ -4,27 +4,32 @@ import * as express from "express";
 import * as classrouter from "classrouter";
 
 const morgan = require('morgan');
-const pkg:{name:string} = require('../package.json');
+const pkg: { name: string } = require('../package.json');
 
-import {apiConf } from 'core/config';
+import { apiConf } from 'core/config';
 import * as IModel from 'core/model';
 import * as errors from 'core/errors';
 
 
+import { Api as ApiRouter } from './api/index';
+
 const app = express();
 app.use(morgan('dev'));
 
-//app.use('/', classrouter.attach(express.Router(), ApiRouter, 'app'))
+app.use('/', classrouter.attach(express.Router(), ApiRouter, 'app'))
 
 
 app.use((err: any, req: express.Request, res: express.Response, next: any) => {
     if (err instanceof classrouter.ClassrouterValidationError) {
         var error = new errors.ValidationErrors();
-        if (err && Array.isArray(err)) {
-            for (let it of err) {
-                if (it.constraints) {
-                    let msg = Object.keys(it.constraints).map(key => it.constraints[key]).join('; ');
-                    error.addError(it.property, msg)
+        //console.log(err.errors)
+        if (err && Array.isArray(err.errors)) {
+            for (let item of err.errors) {
+                if (item && item.constraints) {
+                    let msg = Object.keys(item.constraints)
+                        .map(key => item && item.constraints && item.constraints[key])
+                        .join('; ');
+                    error.addError(item.property, msg)
                 }
             }
         }
@@ -58,6 +63,25 @@ IModel.check()
         app.listen(apiConf.port, () => {
             console.log(`Starting ${pkg.name}. listening on port ${apiConf.port}!`)
         });
+
+        // IModel.LoggerByLoadOrCreate('hahah')
+        //     .then(Model => {
+        //         return Model.create(<IModel.ILogger.IAttributes>{
+        //             //id : '',
+        //             ancher: '',
+        //             at: new Date(),
+        //             attr: { hh:11},
+        //             message: '',
+        //             owner: ''
+        //         })
+
+        //     })
+        //     .then(r => {
+        //         console.log(r)
+        //     })
+        //     .catch(e => {
+        //         console.log(e)
+        //     })
     })
     .catch(err => {
         console.log('cannot login database', err);

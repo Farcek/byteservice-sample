@@ -1,4 +1,4 @@
 @echo off
 
-title Userly API Nodemon
-nodemon --config nodemon.json ../dist.api/server.js
+title API Service Nodemon
+nodemon --config nodemon.json ../dist.service.api/server.js
