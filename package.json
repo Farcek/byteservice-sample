@@ -4,7 +4,10 @@
   "description": "byte soliution logger service",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "db:gen": "node_modules/.bin/sequelize migration:generate",
+    "db:up": "node_modules/.bin/sequelize db:migrate",
+    "db:down": "node_modules/.bin/sequelize db:migrate:undo"
   },
   "author": "farcek",
   "license": "ISC",
