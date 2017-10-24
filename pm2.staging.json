@@ -1,0 +1,10 @@
+{
+    "apps": [{
+        "name": "byte-logger-staging",
+        "script": "dist.service.api/server.js",
+        "env": {
+            "NODE_ENV": "staging",
+            "NODE_CONFIG_DIR": "/home/bytemn/logger.test.byte.mn/2.0.0/config"
+        }
+    }]
+}

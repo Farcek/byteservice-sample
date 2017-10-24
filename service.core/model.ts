@@ -9,13 +9,8 @@ export {
 }
 
 export async function check() {
-    try {
-        await connection.authenticate();
-        //await connection.sync({force:true})
-        console.log('db connection success')
-    } catch (error) {
-        console.log('db connection loss', error)
-    }
+    await connection.authenticate();
+    //await connection.sync({force:true})
 }
 
 export function associate() {

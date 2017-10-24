@@ -16,7 +16,7 @@ export interface IAttributes {
     /**
      * User id
      */
-    ovner: string;
+    owner: string;
 
     loggers: string[]
 
@@ -55,7 +55,7 @@ export const App = (() => {
             type: Sequelize.STRING,
             allowNull: false
         },
-        ovner: {
+        owner: {
             type: Sequelize.STRING,
             allowNull: false
         },

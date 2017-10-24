@@ -63,25 +63,6 @@ IModel.check()
         app.listen(apiConf.port, () => {
             console.log(`Starting ${pkg.name}. listening on port ${apiConf.port}!`)
         });
-
-        // IModel.LoggerByLoadOrCreate('hahah')
-        //     .then(Model => {
-        //         return Model.create(<IModel.ILogger.IAttributes>{
-        //             //id : '',
-        //             ancher: '',
-        //             at: new Date(),
-        //             attr: { hh:11},
-        //             message: '',
-        //             owner: ''
-        //         })
-
-        //     })
-        //     .then(r => {
-        //         console.log(r)
-        //     })
-        //     .catch(e => {
-        //         console.log(e)
-        //     })
     })
     .catch(err => {
         console.log('cannot login database', err);

@@ -35,12 +35,11 @@ export interface IConsole {
 export const consoleConf:IConsole = config.get('console');
 
 
-export interface IStatus {
-    isProd: boolean
-    isDev: boolean
-    isStaging: boolean
-    env: 'production' | 'development' | 'staging'
+export interface IState {
+    env: string // 'production' | 'development' | 'staging'
 }
 
+export const $state:IState = config.get('state');
 
-console.log(`loading config dir "${process.env.NODE_CONFIG_DIR || process.cwd()}"`)
+console.log(`loading config dir "${config.util.getEnv('NODE_CONFIG_DIR')}"`)
+console.log(`loading env "${$state.env}"`)

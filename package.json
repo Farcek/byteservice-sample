@@ -1,40 +1,44 @@
 {
-  "name": "logger",
-  "version": "2.0.0",
-  "description": "byte soliution logger service",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "db:gen": "node_modules/.bin/sequelize migration:generate",
-    "db:up": "node_modules/.bin/sequelize db:migrate",
-    "db:down": "node_modules/.bin/sequelize db:migrate:undo"
-  },
-  "author": "farcek",
-  "license": "ISC",
-  "devDependencies": {
-    "@types/express": "^4.0.37",
-    "@types/sequelize": "^4.0.75",
-    "clean-webpack-plugin": "^0.1.16",
-    "raw-loader": "^0.5.1",
-    "ts-loader": "^2.3.7",
-    "typescript": "^2.5.3",
-    "webpack": "^3.5.5",
-    "webpack-node-externals": "^1.6.0"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.2",
-    "classrouter": "git+https://github.com/Farcek/classrouter.git#v0.0.6",
-    "config": "^1.26.2",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.16.1",
-    "jsonwebtoken": "^8.0.1",
-    "morgan": "^1.9.0",
-    "pg": "^7.3.0",
-    "reflect-metadata": "^0.1.10",
-    "request": "^2.83.0",
-    "sequelize": "^4.13.4",
-    "sequelize-cli": "^3.0.0",
-    "uuid": "^3.1.0",
-    "winston": "^2.4.0"
-  }
+    "name": "logger",
+    "version": "2.0.0",
+    "description": "byte soliution logger service",
+    "main": "index.js",
+    "scripts": {
+        "build": "cd service.api && npm run build",
+        "db:gen": "node_modules/.bin/sequelize migration:generate",
+        "db:up": "node_modules/.bin/sequelize db:migrate",
+        "db:down": "node_modules/.bin/sequelize db:migrate:undo",
+        "predeploy:test": "npm run build",
+        "deploy:test": "node_modules/.bin/deploy-tool --config ./.deploy/test.js"
+
+
+    },
+    "author": "farcek",
+    "license": "ISC",
+    "devDependencies": {
+        "@types/express": "^4.0.37",
+        "@types/sequelize": "^4.0.75",
+        "clean-webpack-plugin": "^0.1.16",
+        "raw-loader": "^0.5.1",
+        "ts-loader": "^2.3.7",
+        "typescript": "^2.5.3",
+        "webpack": "^3.5.5",
+        "webpack-node-externals": "^1.6.0"
+    },
+    "dependencies": {
+        "body-parser": "^1.18.2",
+        "classrouter": "git+https://github.com/Farcek/classrouter.git#v1.1.0",
+        "config": "^1.26.2",
+        "cookie-parser": "^1.4.3",
+        "express": "^4.16.1",
+        "jsonwebtoken": "^8.0.1",
+        "morgan": "^1.9.0",
+        "pg": "^7.3.0",
+        "reflect-metadata": "^0.1.10",
+        "request": "^2.83.0",
+        "sequelize": "^4.13.4",
+        "sequelize-cli": "^3.0.0",
+        "uuid": "^3.1.0",
+        "winston": "^2.4.0"
+    }
 }

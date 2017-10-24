@@ -18,7 +18,7 @@ module.exports = {
                 type: Sequelize.STRING,
                 allowNull: false
             },
-            ovner: {
+            owner: {
                 type: Sequelize.STRING,
                 allowNull: false
             },
